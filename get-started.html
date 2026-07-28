@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Started — GenuineReply</title>
+<meta name="description" content="Tell us about your business and we'll show you what GenuineReply looks like on your actual reviews.">
+<link rel="canonical" href="https://genuinereply.com/get-started.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo-link" href="index.html"><div class="logo"><span class="logo-mark">G</span>GenuineReply</div></a>
+    <nav class="site-nav">
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="examples.html">Examples</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+    <a class="btn btn-small" href="get-started.html">Get started</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Let's look at your actual reviews.</h1>
+      <p>
+        Tell us a bit about your business. We'll reach out to set up a
+        live look at what GenuineReply would draft for your real reviews —
+        no commitment, no account needed to see it.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <form class="lead-form" id="lead-form">
+        <div class="form-row">
+          <label for="name">Your name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-row">
+          <label for="business">Business name</label>
+          <input type="text" id="business" name="business" required>
+        </div>
+        <div class="form-row">
+          <label for="locations">Number of locations</label>
+          <input type="text" id="locations" name="locations" placeholder="e.g. 1, or 10">
+        </div>
+        <div class="form-row">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-row">
+          <label for="phone">Phone (optional)</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+        <div class="form-row">
+          <label for="message">Anything else we should know?</label>
+          <textarea id="message" name="message" placeholder="e.g. which review sites you care about most, biggest reputation headache right now, etc."></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Send</button>
+        <p class="form-note">
+          This opens your email app with your info filled in and sends it
+          directly to us — no account, no signup, no data stored anywhere
+          in between.
+        </p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2026 GenuineReply. <a href="mailto:thayes0327@gmail.com">thayes0327@gmail.com</a></p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('lead-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = document.getElementById('name').value.trim();
+    var business = document.getElementById('business').value.trim();
+    var locations = document.getElementById('locations').value.trim();
+    var email = document.getElementById('email').value.trim();
+    var phone = document.getElementById('phone').value.trim();
+    var message = document.getElementById('message').value.trim();
+
+    var lines = [
+      'Name: ' + name,
+      'Business: ' + business,
+      'Locations: ' + (locations || '(not specified)'),
+      'Email: ' + email,
+      'Phone: ' + (phone || '(not specified)'),
+      '',
+      'Message:',
+      message || '(none)'
+    ];
+
+    var subject = encodeURIComponent('GenuineReply inquiry — ' + business);
+    var body = encodeURIComponent(lines.join('\n'));
+    window.location.href = 'mailto:thayes0327@gmail.com?subject=' + subject + '&body=' + body;
+  });
+</script>
+
+</body>
+</html>
