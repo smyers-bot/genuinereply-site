@@ -1,0 +1,10 @@
+{
+  "name": "genuinereply-site",
+  "private": true,
+  "scripts": {
+    "dev": "node dev-server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1"
+  }
+}

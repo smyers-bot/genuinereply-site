@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Examples — GenuineReply</title>
-<meta name="description" content="Real reviews, real AI-drafted replies from GenuineReply — see the actual quality before you talk to us.">
+<title>Try It Live — GenuineReply</title>
+<meta name="description" content="Paste a real review and get a genuine AI-drafted reply back instantly — no signup. Plus real examples from an actual business.">
 <link rel="canonical" href="https://genuinereply.com/examples.html">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%232954ff%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-family=%27Arial%27 font-weight=%27800%27 font-size=%2717%27 fill=%27white%27 text-anchor=%27middle%27%3EG%3C/text%3E%3C/svg%3E">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://genuinereply.com/examples.html">
-<meta property="og:title" content="Examples — GenuineReply">
-<meta property="og:description" content="Real reviews, real AI-drafted replies from GenuineReply — see the actual quality before you talk to us.">
+<meta property="og:title" content="Try It Live — GenuineReply">
+<meta property="og:description" content="Paste a real review and get a genuine AI-drafted reply back instantly — no signup. Plus real examples from an actual business.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Examples — GenuineReply">
-<meta name="twitter:description" content="Real reviews, real AI-drafted replies from GenuineReply — see the actual quality before you talk to us.">
+<meta name="twitter:title" content="Try It Live — GenuineReply">
+<meta name="twitter:description" content="Paste a real review and get a genuine AI-drafted reply back instantly — no signup. Plus real examples from an actual business.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +29,7 @@
     <nav class="site-nav">
       <a href="how-it-works.html">How it works</a>
       <a href="pricing.html">Pricing</a>
-      <a href="examples.html" class="active">Examples</a>
+      <a href="examples.html" class="active">Try it live</a>
       <a href="faq.html">FAQ</a>
     </nav>
     <a class="btn btn-small" href="get-started.html">Get started</a>
@@ -40,14 +40,42 @@
 
   <section class="page-hero">
     <div class="container">
-      <h1>See the actual drafts, not a mockup.</h1>
-      <p>These are genuine reviews for Bakon Southern Eatery in Chapin, SC — an early partner business — with the reply GenuineReply actually drafted.</p>
+      <h1>Try it yourself. Right now.</h1>
+      <p>Paste a real review below and watch GenuineReply draft an actual reply — no signup, no sales call. Then see it in action on a real business further down.</p>
     </div>
   </section>
 
-  <section class="section" style="padding-top: 32px;">
+  <section class="section" style="padding-top: 24px; padding-bottom: 24px;">
     <div class="container" style="max-width: 720px;">
+      <div class="demo-widget">
+        <div class="form-row">
+          <label for="demo-business">Business name (optional)</label>
+          <input type="text" id="demo-business" placeholder="e.g. Joe's Pizza" maxlength="80">
+        </div>
+        <div class="form-row">
+          <label>Rating</label>
+          <div class="demo-star-picker" id="demo-star-picker" role="radiogroup" aria-label="Rating">
+            <button type="button" class="demo-star" data-value="1" aria-label="1 star">&#9733;</button>
+            <button type="button" class="demo-star" data-value="2" aria-label="2 stars">&#9733;</button>
+            <button type="button" class="demo-star" data-value="3" aria-label="3 stars">&#9733;</button>
+            <button type="button" class="demo-star" data-value="4" aria-label="4 stars">&#9733;</button>
+            <button type="button" class="demo-star" data-value="5" aria-label="5 stars">&#9733;</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="demo-review">Review text</label>
+          <textarea id="demo-review" maxlength="500" placeholder="Paste a real review — yours, a competitor's, anyone's — and see what GenuineReply drafts."></textarea>
+        </div>
+        <button class="btn btn-primary" id="demo-submit" type="button" style="width: 100%;">Draft my reply</button>
+        <div id="demo-result" class="demo-result" style="display: none;"></div>
+        <div id="demo-error" class="demo-error" style="display: none;"></div>
+      </div>
+    </div>
+  </section>
 
+  <section class="section" style="padding-top: 8px;">
+    <div class="container" style="max-width: 720px;">
+      <h2 style="text-align: left;">Or see it on a real business</h2>
       <div class="disclosure">
         <strong>On sourcing:</strong> the first example (C. Thompson) was read
         directly from Bakon Southern Eatery's Google Business Profile — a
@@ -119,6 +147,80 @@
     <p>&copy; 2026 GenuineReply. <a href="get-started.html">Contact us</a></p>
   </div>
 </footer>
+
+<script>
+  (function () {
+    var selectedRating = 0;
+    var stars = document.querySelectorAll('.demo-star');
+    var reviewInput = document.getElementById('demo-review');
+    var businessInput = document.getElementById('demo-business');
+    var submitBtn = document.getElementById('demo-submit');
+    var resultBox = document.getElementById('demo-result');
+    var errorBox = document.getElementById('demo-error');
+
+    function paintStars(value) {
+      stars.forEach(function (star) {
+        var v = Number(star.dataset.value);
+        star.classList.toggle('filled', v <= value);
+      });
+    }
+
+    stars.forEach(function (star) {
+      star.addEventListener('click', function () {
+        selectedRating = Number(star.dataset.value);
+        paintStars(selectedRating);
+      });
+    });
+
+    submitBtn.addEventListener('click', function () {
+      var reviewText = reviewInput.value.trim();
+      resultBox.style.display = 'none';
+      errorBox.style.display = 'none';
+
+      if (!reviewText) {
+        errorBox.textContent = 'Paste a review first.';
+        errorBox.style.display = 'block';
+        return;
+      }
+      if (!selectedRating) {
+        errorBox.textContent = 'Pick a star rating.';
+        errorBox.style.display = 'block';
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Drafting…';
+
+      fetch('/api/demo-reply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          reviewText: reviewText,
+          rating: selectedRating,
+          businessName: businessInput.value.trim()
+        })
+      })
+        .then(function (res) {
+          return res.json().then(function (data) {
+            if (!res.ok) throw new Error(data.error || 'Something went wrong.');
+            return data;
+          });
+        })
+        .then(function (data) {
+          resultBox.textContent = data.reply;
+          resultBox.style.display = 'block';
+        })
+        .catch(function (err) {
+          errorBox.textContent = err.message || 'Something went wrong. Please try again.';
+          errorBox.style.display = 'block';
+        })
+        .finally(function () {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Draft my reply';
+        });
+    });
+  })();
+</script>
 
 </body>
 </html>

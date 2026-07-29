@@ -335,6 +335,27 @@ p { color: var(--muted); margin: 0 0 16px; }
 .lead-form button { width: 100%; border: none; cursor: pointer; }
 .form-note { font-size: 0.82rem; color: var(--muted); text-align: center; margin-top: 14px; }
 
+/* Live demo widget */
+.demo-widget {
+  background: var(--card); border: 2px solid var(--royal); border-radius: var(--radius);
+  padding: 32px; box-shadow: var(--shadow-hover);
+}
+.demo-star-picker { display: flex; gap: 4px; }
+.demo-star {
+  background: none; border: none; cursor: pointer; font-size: 2rem; line-height: 1;
+  color: #d5dcf0; padding: 0 2px; box-shadow: none; transform: none;
+}
+.demo-star:hover { transform: none; box-shadow: none; }
+.demo-star.filled { color: #f5a623; }
+.demo-result {
+  margin-top: 20px; background: var(--royal-light); border-radius: 12px;
+  padding: 18px 20px; color: var(--navy); font-size: 0.95rem; white-space: pre-line;
+}
+.demo-error {
+  margin-top: 16px; background: #fdecec; border: 1px solid #f3c7c7; border-radius: 10px;
+  padding: 12px 16px; color: #a12f2f; font-size: 0.9rem;
+}
+
 @media (max-width: 720px) {
   h1 { font-size: 2.1rem; }
   h2 { font-size: 1.5rem; }
